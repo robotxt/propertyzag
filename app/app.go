@@ -15,9 +15,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type AppHandler struct {
-	Router *mux.Router
-}
+type AppHandler struct{}
 
 var env string = strings.ToUpper(os.Getenv("ENVIRONMENT"))
 var router *mux.Router = mux.NewRouter().StrictSlash(false)
@@ -37,8 +35,6 @@ func (a *AppHandler) Initialize() {
 	apiv1.Router = router
 	apiv1.Ctx = context.Background()
 	apiv1.SetRouters()
-
-	a.Router = router
 
 	srv := &http.Server{
 		Handler:      router,
